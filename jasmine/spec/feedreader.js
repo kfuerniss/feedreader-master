@@ -73,24 +73,53 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         it('test that the menu changes', function() {
-            expect($('body').hasClass('menu-hidden')).toEqual(true);
-            expect($('body').hasClass('menu-hidden')).toEqual(false);
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
     });
     /* TODO: Write a new test suite named "Initial Entries" */
-
+    describe('initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
+         * function is called and completes it works, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        beforeEach (function(done) {
+            loadFeed(0, function() {
+                done();
+            });
+        });
 
+        it('loadFeed has completed', function() {
+            expect($('.entry .Feed')).toBeDefined(true);
+        });
+    });
     /* TODO: Write a new test suite named "New Feed Selection" */
-
+    describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        var test1;
+        var test2;
+
+        beforeEach (function(done) {
+            loadFeed(0, function() {
+                test1 = $('.feed').html();
+                done();
+            })
+        })
+
+        it('New feed is loaded', function() {
+            loadFeed(1, function() {
+                test2 = $('.feed').html();
+                expect(test2).not.toMatch(test1);
+                done();
+            });
+        });
+    });    
 }());
