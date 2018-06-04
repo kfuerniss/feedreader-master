@@ -110,16 +110,16 @@ $(function() {
         beforeEach (function(done) {
             loadFeed(0, function() {
                 test1 = $('.feed').html();
-                done();
-            })
-        })
-
-        it('New feed is loaded', function() {
-            loadFeed(1, function() {
-                test2 = $('.feed').html();
-                expect(test2).not.toMatch(test1);
-                done();
+                loadFeed(1, function() {
+                    test2 = $('.feed').html();
+                    done();
+                });
             });
+        });
+
+        it('New feed is loaded', function(done) {
+            expect(test2).not.toMatch(test1);
+            done();
         });
     });    
 }());
