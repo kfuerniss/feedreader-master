@@ -33,7 +33,7 @@ $(function() {
             allFeeds.forEach(function (arrayURL){
                 var itemURL = arrayURL.url
                 expect(itemURL).not.toBeUndefined();
-                expect(allFeeds.length).not.toBe(0);
+                expect(itemURL.length).not.toBe(0);
             });
         });
 
@@ -46,7 +46,7 @@ $(function() {
             allFeeds.forEach(function (arrayName){
                 var itemName = arrayName.name
                 expect(itemName).not.toBeUndefined();
-                expect(allFeeds.length).not.toBe(0);
+                expect(itemName.length).not.toBe(0);
             });
         });
 
