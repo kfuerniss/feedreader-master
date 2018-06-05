@@ -86,7 +86,7 @@ $(function() {
         });
 
         it('loadFeed has completed', function() {
-            expect($('.feed .entry')).toBeDefined(true);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
     /* Test suite named "New Feed Selection" */
